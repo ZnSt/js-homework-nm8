@@ -1,16 +1,38 @@
 import throttle from 'lodash.throttle';
 
 const formRefs = document.querySelector('.feedback-form');
+populateTextarea();
 
 formRefs.addEventListener('submit', onFormSubmit);
-formRefs.addEventListener('input', onTextareaInput);
+formRefs.addEventListener('input', throttle(onFormInput, 500));
 
 function onFormSubmit(event) {
   event.preventDefault();
-  console.dir(event.currenTarget);
+  const resultData = localStorage.getItem('feedback-form-state');
+
+  console.log(JSON.parse(resultData));
+  event.currentTarget.reset();
+
+  localStorage.removeItem('feedback-form-state');
 }
 
-function onTextareaInput(event) {}
+function onFormInput() {
+  const formData = {
+    email: formRefs.elements.email.value,
+    message: formRefs.elements.message.value,
+  };
+  const savedData = JSON.stringify(formData);
+  localStorage.setItem('feedback-form-state', savedData);
+}
+
+function populateTextarea() {
+  const savedMessage = localStorage.getItem('feedback-form-state');
+  if (savedMessage) {
+    const data = JSON.parse(savedMessage);
+    formRefs.elements.email.value = data.email;
+    formRefs.elements.message.value = data.message;
+  }
+}
 
 // ТОЛЬКО ДЛЯ ТЕКСТАРИИ
 // const refs = {
