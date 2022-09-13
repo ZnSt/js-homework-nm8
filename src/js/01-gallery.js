@@ -20,3 +20,38 @@ new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
   captionDelay: 250,
 });
+
+// <section id="tree"></section>
+
+// const food = {
+//   Meat: {
+//     Pork: {},
+//     Beef: {},
+//   },
+
+//   Fruit: {
+//     Red: {
+//       Cherry: { ding: {} },
+//       Strawberry: {},
+//     },
+//     Yellow: {
+//       Banana: {},
+//       Pineapple: {},
+//     },
+//   },
+// };
+
+// const sectionRef = document.querySelector('#tree');
+
+// function createTree(element, dataObj) {
+//   const list = document.createElement('ul');
+//   const dataObjKeys = Object.keys(dataObj);
+//   dataObjKeys.forEach(key => {
+//     const item = document.createElement('li');
+//     item.textContent = key;
+//     list.append(item);
+//     createTree(item, dataObj[key]);
+//   });
+//   element.append(list);
+// }
+// createTree(sectionRef, food);
